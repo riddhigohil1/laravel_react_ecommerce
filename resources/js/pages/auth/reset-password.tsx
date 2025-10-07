@@ -79,7 +79,7 @@ export default function ResetPassword({ token, email }: ResetPasswordProps) {
 
                         <Button
                             type="submit"
-                            className="mt-4 w-full"
+                            className="btn mt-4 w-full btn-primary"
                             disabled={processing}
                             data-test="reset-password-button"
                         >

@@ -1,6 +1,8 @@
 import AppLogoIcon from './app-logo-icon';
 
 export default function AppLogo() {
+    const appName = import.meta.env.VITE_APP_NAME;
+
     return (
         <>
             <div className="flex aspect-square size-8 items-center justify-center rounded-md bg-sidebar-primary text-sidebar-primary-foreground">
@@ -8,7 +10,7 @@ export default function AppLogo() {
             </div>
             <div className="ml-1 grid flex-1 text-left text-sm">
                 <span className="mb-0.5 truncate leading-tight font-semibold">
-                    Laravel Starter Kit
+                    {appName}
                 </span>
             </div>
         </>
