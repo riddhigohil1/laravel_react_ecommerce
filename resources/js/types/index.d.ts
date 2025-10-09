@@ -24,9 +24,14 @@ export interface NavItem {
 
 export interface SharedData {
     name: string;
+    csrf_token: string;
     quote: { message: string; author: string };
     auth: Auth;
     sidebarOpen: boolean;
+    totalPrice: number;
+    totalQuantity: number;
+    success: string;
+    minCartItems: CartItem[];
     [key: string]: unknown;
 }
 
@@ -88,6 +93,25 @@ export type Product = {
         quantity: number;
         price: number;
     }>;
+};
+
+export type CartItem = {
+    id: number;
+    product_id: number;
+    title: string;
+    slug: string;
+    price: number;
+    quantity: number;
+    image: string;
+    option_ids: Record<string, number>;
+    options: VariationTypeOption[];
+};
+
+export type GroupedCartItem = {
+    user: User;
+    items: CartItem[];
+    totalPrice: number;
+    totalQuantity: number;
 };
 
 export type PaginationProps<T> = {

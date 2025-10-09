@@ -1,3 +1,4 @@
+import { store } from '@/actions/App/Http/Controllers/CartController';
 import Carousel from '@/components/Carousel';
 import CurrencyFormatter from '@/components/CurrencyFormatter';
 import { arraysAreEqual } from '@/helpers';
@@ -108,7 +109,7 @@ export default function Show({
     };
 
     const addTocart = () => {
-        form.post(route('cart.store', product.id), {
+        form.post(store(product.id), {
             preserveScroll: true,
             preserveState: true,
             onError: (err) => {

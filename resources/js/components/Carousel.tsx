@@ -6,7 +6,7 @@ function Carousel({ images }: { images: Image[] }) {
 
     useEffect(() => {
         setSelectedImage(images[0]);
-    }, images);
+    }, [images]);
 
     return (
         <>
@@ -36,11 +36,6 @@ function Carousel({ images }: { images: Image[] }) {
                     <div className="carousel-item w-full">
                         <img src={selectedImage.large} className="w-full" />
                     </div>
-                    {/* {images.map((image, i) => (
-                        <div className="carousel-item w-full" key={image.id}>
-                            <img src={image.large} className="w-full" />
-                        </div>
-                    ))} */}
                 </div>
             </div>
         </>
