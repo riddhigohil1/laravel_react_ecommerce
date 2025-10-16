@@ -31,6 +31,7 @@ export interface SharedData {
     totalPrice: number;
     totalQuantity: number;
     success: string;
+    error: string;
     minCartItems: CartItem[];
     [key: string]: unknown;
 }
@@ -116,4 +117,33 @@ export type GroupedCartItem = {
 
 export type PaginationProps<T> = {
     data: Array<T>;
+};
+
+export type OrderItem = {
+    id: number;
+    quantity: number;
+    price: number;
+    variation_type_option_ids: number[];
+    product: {
+        id: number;
+        title: string;
+        slug: string;
+        description: string;
+        image: string;
+    };
+};
+
+export type Order = {
+    id: number;
+    total_price: number;
+    status: string;
+    created_at: string;
+    vendorUser: {
+        id: number;
+        name: string;
+        email: string;
+        store_name: string;
+        store_address: string;
+    };
+    orderItems: OrderItem[];
 };

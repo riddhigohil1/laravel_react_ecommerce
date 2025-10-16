@@ -73,7 +73,7 @@ class CartService
                             ->get()
                             ->keyBy('id');
 
-                $cartItmeData = [];
+                $cartItemData = [];
 
                 foreach($cartItems as $cartItem){
                     $product = data_get($products, $cartItem['product_id']);
@@ -192,7 +192,7 @@ class CartService
 
         $cartItem = CartItem::where('user_id', $userID)
                     ->where('product_id', $productId)
-                    ->where('variation_option_type_ids', json_encode($optionIds))
+                    ->where('variation_type_option_ids', json_encode($optionIds))
                     ->first();
 
         if($cartItem)
@@ -245,7 +245,7 @@ class CartService
 
         $cartItem = CartItem::where('user_id', $userId)
                     ->where('product_id', $productId)
-                    ->where('variation_option_type_ids', json_encode($optionIds))
+                    ->where('variation_type_option_ids', json_encode($optionIds))
                     ->delete();
 
     }

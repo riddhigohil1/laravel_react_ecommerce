@@ -1,3 +1,4 @@
+import { checkout } from '@/actions/App/Http/Controllers/CartController';
 import CurrencyFormatter from '@/components/CurrencyFormatter';
 import Header from '@/layouts/Header';
 import { GroupedCartItem, SharedData } from '@/types';
@@ -69,7 +70,7 @@ export default function Index() {
                     <div className="card-body">
                         Subtotal ({totalQuantity} items): &nbsp;
                         <CurrencyFormatter amount={totalPrice} />
-                        <form action="" method="post">
+                        <form {...checkout.form()}>
                             <input
                                 type="hidden"
                                 name="_token"

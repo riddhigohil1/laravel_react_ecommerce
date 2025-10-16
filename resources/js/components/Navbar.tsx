@@ -4,8 +4,7 @@ import { Link, usePage } from '@inertiajs/react';
 import NavbarCart from './NavbarCart';
 
 function Navbar() {
-    const { auth, totalQuantity, totalPrice, cartItems } =
-        usePage<SharedData>().props;
+    const { auth } = usePage<SharedData>().props;
     const appName = import.meta.env.VITE_APP_NAME;
 
     return (
