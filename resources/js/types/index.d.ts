@@ -30,7 +30,10 @@ export interface SharedData {
     sidebarOpen: boolean;
     totalPrice: number;
     totalQuantity: number;
-    success: string;
+    success: {
+        message: string;
+        time: number;
+    };
     error: string;
     minCartItems: CartItem[];
     [key: string]: unknown;
