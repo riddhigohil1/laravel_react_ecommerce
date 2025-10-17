@@ -4,11 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Enum\OrderStatusEnum;
 use App\Http\Resources\OrderViewResource;
+use App\Mail\CheckoutCompleted;
+use App\Mail\NewOrderMail;
 use App\Models\CartItem;
 use App\Models\Order;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 use Inertia\Inertia;
 use Stripe\Exception\SignatureVerificationException;
 use Stripe\StripeClient;
@@ -62,11 +65,6 @@ class StripController extends Controller
             return response('Invalid Payload', 400);
         };
 
-        Log::info('==================================');
-        Log::info('==================================');
-        Log::info($event->type);
-        Log::info($event);
-
         switch($event->type)
         {
             case 'charge.updated':
@@ -97,7 +95,13 @@ class StripController extends Controller
                     $order->vendor_subtotal = $order->total_price - $order->online_payment_commission - $order->website_commission;
 
                     $order->save();
+
+                    // Send email to vendor
+                    Mail::to($order->vendorUser)->send(new NewOrderMail($order));
                 }
+
+                // Send email to buyer
+                Mail::to($orders[0]->user)->send(new CheckoutCompleted($orders));
 
             case 'checkout.session.completed':
                 $session = $event->data->object;
